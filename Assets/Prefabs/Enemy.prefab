@@ -90,6 +90,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 1
   _rotationSpeed: 100
+  _screenBorder: -30
 --- !u!58 &4387189700162640697
 CircleCollider2D:
   m_ObjectHideFlags: 0
