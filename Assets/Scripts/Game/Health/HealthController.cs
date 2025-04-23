@@ -15,10 +15,9 @@ public class HealthController : MonoBehaviour
     }
 
     public bool IsInvincible { get; set; }
-
     public UnityEvent OnDied;
-
     public UnityEvent OnDamaged;
+    public UnityEvent OnHealthChanged;
 
     public void TakeDamage(float damageAmount)
     {
@@ -30,6 +29,8 @@ public class HealthController : MonoBehaviour
         }
         
         _currentHealth -= damageAmount;
+
+        OnHealthChanged.Invoke();
 
         if (_currentHealth < 0) { 
             _currentHealth = 0;
@@ -51,6 +52,8 @@ public class HealthController : MonoBehaviour
         }
 
         _currentHealth += amountToAdd;
+
+        OnHealthChanged.Invoke();
 
         if (_currentHealth > _maximumHealth) {
             _currentHealth = _maximumHealth;
