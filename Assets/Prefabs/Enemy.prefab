@@ -19,6 +19,8 @@ GameObject:
   - component: {fileID: 3404446800495661177}
   - component: {fileID: 2732703206716329451}
   - component: {fileID: 8731828865290936012}
+  - component: {fileID: -5809155113132173627}
+  - component: {fileID: 6431710641966297593}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -264,7 +266,19 @@ MonoBehaviour:
         m_CallState: 2
   OnDamaged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6431710641966297593}
+        m_TargetAssemblyTypeName: EnemyDamagedFlash, Assembly-CSharp
+        m_MethodName: StartFlash
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -306,6 +320,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _chanceOfCollectableDrop: 0.3
+--- !u!114 &-5809155113132173627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846581043060424675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00d30d76f31177848bcca216938480a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6431710641966297593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846581043060424675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5835e7bbc1ed2f45bbbfb7a18774219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashDuration: 0.2
+  _flashColor: {r: 1, g: 0, b: 0, a: 1}
+  _numberOfFlashes: 1
 --- !u!1 &2031471885314480757
 GameObject:
   m_ObjectHideFlags: 0
