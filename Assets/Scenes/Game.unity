@@ -654,7 +654,7 @@ GameObject:
   m_Component:
   - component: {fileID: 760751453}
   - component: {fileID: 760751454}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -740,7 +740,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 792451073}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Gun Offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -890,7 +890,7 @@ GameObject:
   - component: {fileID: 985738594}
   - component: {fileID: 985738595}
   - component: {fileID: 985738596}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}

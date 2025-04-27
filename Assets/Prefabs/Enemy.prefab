@@ -97,6 +97,11 @@ MonoBehaviour:
   _speed: 1
   _rotationSpeed: 100
   _screenBorder: -30
+  _obstacleCheckCircleRadius: 0.45
+  _obstacleCheckDistance: 1
+  _obstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!58 &4387189700162640697
 CircleCollider2D:
   m_ObjectHideFlags: 0
