@@ -10,6 +10,12 @@ public class PlayerShoot : MonoBehaviour
 
     private bool _fireContinuously;
     private float _lastFireTime;
+    private CrosshairController _crosshair;
+
+    private void Awake()
+    {
+        _crosshair = FindObjectOfType<CrosshairController>();
+    }
 
     void Update()
     {
@@ -29,9 +35,11 @@ public class PlayerShoot : MonoBehaviour
             return;
         }
 
-        GameObject bullet = Instantiate(_bulletPrefab, _gunOffset.position, transform.rotation);
+        GameObject bullet = Instantiate(_bulletPrefab, _gunOffset.position, Quaternion.identity);
         Rigidbody2D rigidbody = bullet.GetComponent<Rigidbody2D>();
-        rigidbody.linearVelocity = _bulletSpeed * transform.up;
+
+        Vector2 shootDirection = (_crosshair.transform.position - _gunOffset.position).normalized;
+        rigidbody.linearVelocity = _bulletSpeed * shootDirection;
     }
 
     public void OnAttack(InputValue inputValue)
