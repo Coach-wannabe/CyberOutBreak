@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerShoot : MonoBehaviour
@@ -29,9 +29,9 @@ public class PlayerShoot : MonoBehaviour
 
     private void FireBullet()
     {
-        if (_gunOffset == null)
+        if (_gunOffset == null || _crosshair == null)
         {
-            Debug.LogWarning("Gun offset not assigned.");
+            Debug.LogWarning("Gun offset or Crosshair is not assigned.");
             return;
         }
 
@@ -40,6 +40,10 @@ public class PlayerShoot : MonoBehaviour
 
         Vector2 shootDirection = (_crosshair.transform.position - _gunOffset.position).normalized;
         rigidbody.linearVelocity = _bulletSpeed * shootDirection;
+
+        // 👉 Rotate bullet immediately to face the shooting direction
+        float angle = Mathf.Atan2(shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
+        bullet.transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
     }
 
     public void OnAttack(InputValue inputValue)

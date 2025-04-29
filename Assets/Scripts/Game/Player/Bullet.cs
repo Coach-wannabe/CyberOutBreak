@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 
     private void Awake()
     {
-        _camera = Camera.main;  
+        _camera = Camera.main;
     }
 
     private void Update()
