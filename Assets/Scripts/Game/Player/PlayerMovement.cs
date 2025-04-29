@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _rotationSpeed;
     [SerializeField] private float _screenBorder;
+    [SerializeField] private Transform _graphicsTransform;
 
     private Rigidbody2D _rigidbody;
     private Vector2 _movementInput;
@@ -19,6 +20,11 @@ public class PlayerMovement : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _camera = Camera.main;
         _animator = GetComponent<Animator>();
+
+        if (_graphicsTransform == null)
+        {
+            Debug.LogWarning("GraphicsTransform not assigned!");
+        }
     }
 
     private void FixedUpdate()
@@ -26,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
         SetPlayerVelocity();
         //RotateInDirectionOfMovement();
         SetAnimation();
+        FlipSprite();
     }
 
     private void SetAnimation()
@@ -78,4 +85,17 @@ public class PlayerMovement : MonoBehaviour
     {
         _movementInput = inputValue.Get<Vector2>();
     }
+
+    private void FlipSprite()
+    {
+        if (_movementInput.x > 0.01f)
+        {
+            _graphicsTransform.localRotation = Quaternion.Euler(0, 0, 0); // Face right
+        }
+        else if (_movementInput.x < -0.01f)
+        {
+            _graphicsTransform.localRotation = Quaternion.Euler(0, 180, 0); // Face left
+        }
+    }
+
 }

@@ -8,6 +8,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float _obstacleCheckCircleRadius;
     [SerializeField] private float _obstacleCheckDistance;
     [SerializeField] private LayerMask _obstacleLayerMask;
+    [SerializeField] private Transform _graphicsTransform;
 
     private Rigidbody2D _rigidbody;
     private EnemyAwarenessController _awarenessController;
@@ -25,13 +26,19 @@ public class EnemyMovement : MonoBehaviour
         _targetDirection = transform.up;
         _camera = Camera.main;
         _obstacleCollisions = new RaycastHit2D[10];
+
+        if (_graphicsTransform == null)
+        {
+            Debug.LogWarning("Enemy graphics transform not assigned!");
+        }
     }
 
     private void FixedUpdate()
     {
         UpdateTargetDirection();
-        RotateTowardsTarget();
+        //RotateTowardsTarget();
         SetVelocity();
+        FlipGraphicsBasedOnMovement();
     }
 
     private void UpdateTargetDirection()
@@ -126,6 +133,29 @@ public class EnemyMovement : MonoBehaviour
 
     private void SetVelocity()
     {
-        _rigidbody.linearVelocity = transform.up * _speed;
+        _rigidbody.linearVelocity = _targetDirection * _speed;
+
+        // Flip sprite based on horizontal direction
+        if (_targetDirection.x != 0)
+        {
+            Vector3 localScale = _graphicsTransform.localScale;
+            localScale.x = Mathf.Sign(_targetDirection.x) * Mathf.Abs(localScale.x);
+            _graphicsTransform.localScale = localScale;
+        }
     }
+
+    private void FlipGraphicsBasedOnMovement()
+    {
+        if (_graphicsTransform == null) return;
+
+        float horizontalVelocity = _rigidbody.linearVelocity.x;
+
+        if (Mathf.Abs(horizontalVelocity) > 0.05f)
+        {
+            Vector3 localScale = _graphicsTransform.localScale;
+            localScale.x = horizontalVelocity > 0 ? 1 : -1;
+            _graphicsTransform.localScale = localScale;
+        }
+    }
+
 }
