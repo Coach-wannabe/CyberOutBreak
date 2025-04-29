@@ -5,7 +5,7 @@ using System.Collections;
 public class PlayerShoot : MonoBehaviour
 {
     [SerializeField] private Gun[] allGuns;                         // Assign scene gun objects in order: Basic, Shotgun, MachineGun
-    [SerializeField] private float timeBetweenShots = 0.5f;
+    //[SerializeField] private float timeBetweenShots = 0.5f;
 
     private Gun equippedGun;
     private CrosshairController _crosshair;
@@ -36,13 +36,17 @@ public class PlayerShoot : MonoBehaviour
     {
         HandleWeaponSwitching();
 
-        if (_isFiring && Time.time - _lastFireTime >= timeBetweenShots)
+        //if (_isFiring && Time.time - _lastFireTime >= timeBetweenShots)
+        //{
+        //    if (_crosshair != null && equippedGun != null)
+        //    {
+        //        equippedGun.Fire(_crosshair.transform.position);
+        //        _lastFireTime = Time.time;
+        //    }
+        //}
+        if (_isFiring && equippedGun != null && _crosshair != null)
         {
-            if (_crosshair != null && equippedGun != null)
-            {
-                equippedGun.Fire(_crosshair.transform.position);
-                _lastFireTime = Time.time;
-            }
+            equippedGun.Fire(_crosshair.transform.position);
         }
     }
 
@@ -52,7 +56,7 @@ public class PlayerShoot : MonoBehaviour
 
         if (_isFiring)
         {
-            _lastFireTime = Time.time - timeBetweenShots; // Fire immediately on click
+            //_lastFireTime = Time.time - timeBetweenShots; // Fire immediately on click
         }
     }
 

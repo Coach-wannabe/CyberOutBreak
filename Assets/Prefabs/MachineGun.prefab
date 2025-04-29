@@ -64,6 +64,8 @@ MonoBehaviour:
   firePoint: {fileID: 671362971857555671}
   bulletPrefab: {fileID: 4310844515553813538, guid: b1dce775df2858d4c8383669f3488ae6, type: 3}
   bulletSpeed: 10
+  spreadAngle: 5
+  fireRate: 0.00000001
   maxAmmo: 30
   reloadTime: 3
 --- !u!1 &6720157627910004833

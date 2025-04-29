@@ -4,14 +4,18 @@ public class BasicGun : Gun
 {
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float bulletSpeed = 10f;
+    [SerializeField] private float fireCooldown = 0.4f; // feels like semi-auto
+
+    private float _lastFireTime;
 
     public override void Fire(Vector2 targetPosition)
     {
-        if (firePoint == null)
-        {
-            Debug.LogWarning("FirePoint not assigned on BasicGun", this);
+        if (firePoint == null) return;
+
+        if (Time.time - _lastFireTime < fireCooldown)
             return;
-        }
+
+        _lastFireTime = Time.time;
 
         Vector2 direction = (targetPosition - (Vector2)firePoint.position).normalized;
 
